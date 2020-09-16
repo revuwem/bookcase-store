@@ -6,8 +6,8 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 
-    switch(action.type){
-        case BOOKS_LOADED: 
+    switch (action.type) {
+        case BOOKS_LOADED:
             return {
                 books: action.payload
             };
@@ -16,4 +16,6 @@ const reducer = (state = initialState, action) => {
     };
 };
 
-export default reducer;
+export {
+    reducer
+};
