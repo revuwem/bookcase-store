@@ -1,7 +1,7 @@
 
 export default class BookcaseService{
 
-    getData(){
+    getBooks(){
         return [];
     }
 }
