@@ -8,4 +8,4 @@ const{
 export {
     BookcaseServiceProvider,
     BookcaseServiceConsumer
-}
+};
