@@ -1,0 +1,22 @@
+.book-card {
+    width: 100%;
+    height: auto;
+    padding: 1.5rem;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    /* flex-wrap: wrap; */
+}
+
+.book-card-img {
+    width: 100%;
+    max-width: 190px;
+    height: 250px;
+}
+
+.book-card-body {
+    margin: 0 1rem;
+}
+
+.book-details {
+    margin: 1rem 0;
+}

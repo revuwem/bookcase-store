@@ -1,10 +1,15 @@
 import React from 'react';
 
-const HomePage = () =>{
+import './pages.css'
+
+const HomePage = () => {
     return (
-        <div className="jumbotron">
-            <h2>Home</h2>
-        </div>
+        <main role="main" id="home-page" className="page">
+            <div className="jumbotron">
+                <h2>Home</h2>
+            </div>
+            <div className="container-fluid"></div>
+        </main>
     );
 };
 

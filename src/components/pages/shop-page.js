@@ -1,14 +1,18 @@
 import React from 'react';
 import BookList from '../book-list';
 
+import './pages.css';
+
 const ShopPage = () => {
     return (
-        <div className="shop-page">
+        <main role="main" id="shop-page" className="page">
             <div className="jumbotron">
                 <h2>Shop</h2>
             </div>
-            <BookList />
-        </div>
+            <div className="container-fluid">
+                <BookList />
+            </div>
+        </main>
     );
 };
 

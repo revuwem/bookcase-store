@@ -16,15 +16,13 @@ const App = () => {
         <div className="bookcase-store">
             <Header />
 
+                <Switch>
+                    <Route path="/" exact component={HomePage} />
+                    <Route path="/shop/" component={ShopPage} />
+                    <Route path="/cart" component={CartPage} />
 
-            <Switch>
-                <Route path="/" exact component={HomePage} />
-                <Route path="/shop/" component={ShopPage} />
-                <Route path="/cart" component={CartPage} />
-
-                <Redirect to="/" />
-            </Switch>
-
+                    <Redirect to="/" />
+                </Switch>
         </div>
     );
 }
