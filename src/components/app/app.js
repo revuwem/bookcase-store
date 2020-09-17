@@ -14,7 +14,7 @@ const App = () => {
 
     return (
         <div className="bookcase-store">
-            <Header />
+            <Header itemsNumber="25" sumTotal="250"/>
 
                 <Switch>
                     <Route path="/" exact component={HomePage} />
