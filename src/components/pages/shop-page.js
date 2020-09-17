@@ -1,20 +1,15 @@
 import React from 'react';
 import BookList from '../book-list';
 
-import {withBookcaseService} from '../hoc';
-
-const ShopPage = ({bookcaseService}) => {
-    
-    const books = bookcaseService.getBooks();
-
+const ShopPage = () => {
     return (
         <div className="shop-page">
             <div className="jumbotron">
                 <h2>Shop</h2>
             </div>
-            <BookList books={books}/>
+            <BookList />
         </div>
     );
 };
 
-export default withBookcaseService()(ShopPage);
+export default ShopPage;
