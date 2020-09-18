@@ -15,11 +15,10 @@ const Header = ({ itemsNumber, sumTotal }) => {
                 </button>
 
                 <div className="collapse navbar-collapse" id="main-navbar">
-                    <ul className="navbar-nav mr-auto">
+                    <ul className="navbar-nav w-100">
                         <Link to="/shop/" className="nav-item">Shop</Link>
-                        <Link to="/cart" className="nav-item">Cart</Link>
-                    </ul>
-                    <p className="cart-details"><span><i class="fas fa-shopping-cart"></i> {itemsNumber}</span> (<span><i class="fas fa-dollar-sign"></i>{sumTotal}</span>)</p>
+                        <Link to="/cart" className="nav-item cart-details"><span><i className="fas fa-shopping-cart"></i> {itemsNumber}</span> (<span><i className="fas fa-dollar-sign"></i>{sumTotal}</span>)</Link>
+                    </ul>                    
                 </div>
             </nav>
         </header>
