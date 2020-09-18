@@ -11,7 +11,22 @@ import compose from '../../utils';
 
 import './book-list.css';
 
-class BookList extends Component {
+
+const BookList = ({books}) => {
+    return (
+        <ul className="book-list">
+            {
+                books.map((book) => (
+                    <li key={book.id} className="book-list-item">
+                        <BookListItem book={book} />
+                    </li>
+                ))
+            }
+        </ul>
+    );
+}
+
+class BookListContainer extends Component {
 
     componentDidMount() {
         this.props.fetchBooks();
@@ -29,22 +44,14 @@ class BookList extends Component {
         }
 
         return (
-            <ul className="book-list">
-                {
-                    books.map((book) => (
-                        <li key={book.id} className="book-list-item">
-                            <BookListItem book={book} />
-                        </li>
-                    ))
-                }
-            </ul>
+            <BookList books={books}/>
         );
     }
 };
 
 const mapStateToProps = ({ books, loading, error }) => ({ books, loading, error });
 
-const mapDispatchToProps = (dispatch, {bookcaseService}) => {   
+const mapDispatchToProps = (dispatch, { bookcaseService }) => {
     return {
         fetchBooks: fetchBooks(bookcaseService, dispatch)
     };
@@ -53,4 +60,4 @@ const mapDispatchToProps = (dispatch, {bookcaseService}) => {
 export default compose(
     withBookcaseService(),
     connect(mapStateToProps, mapDispatchToProps)
-)(BookList);
+)(BookListContainer);
