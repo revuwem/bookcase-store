@@ -1,4 +1,4 @@
-import { BOOKS_REQUESTED, BOOKS_LOADED } from '../action-types';
+import { BOOKS_REQUESTED, BOOKS_LOADED, BOOKS_LOADING_ERROR } from '../action-types';
 
 
 const booksRequested = () => {
@@ -14,7 +14,15 @@ const booksLoaded = (newBooks) =>{
     };
 };
 
+const booksLoadingError = (error) =>{
+    return {
+        type: BOOKS_LOADING_ERROR,
+        payload: error
+    }
+}
+
 export {
     booksRequested,
     booksLoaded,
+    booksLoadingError
 };
