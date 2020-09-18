@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import './book-list-item.css';
 
-const BookListItem = ({ book }) => {
+const BookListItem = ({ book, onAddedToCart }) => {
     const { title, author, price, image } = book;
 
     return (
@@ -14,7 +14,8 @@ const BookListItem = ({ book }) => {
                     <p className="card-subtitle text-muted">{author}</p>
                     <span className="card-text">$ {price}</span>
                 </div>
-                <button className="btn btn-primary">Add to cart</button>
+                <button className="btn btn-primary"
+                        onClick={onAddedToCart}>Add to cart</button>
             </div>
         </div>
     );
