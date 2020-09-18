@@ -9,7 +9,7 @@ const ShopPage = () => {
             <div className="jumbotron">
                 <h2>Shop</h2>
             </div>
-            <div className="container-fluid">
+            <div className="container-fluid books">
                 <BookList />
             </div>
         </main>
