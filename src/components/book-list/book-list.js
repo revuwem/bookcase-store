@@ -5,7 +5,7 @@ import BookListItem from '../book-list-item';
 import Spinner from '../spinner';
 import { withBookcaseService } from '../hoc';
 
-import { booksLoaded } from '../../actions';
+import { booksRequested, booksLoaded } from '../../actions';
 import compose from '../../utils';
 
 import './book-list.css';
@@ -13,7 +13,8 @@ import './book-list.css';
 class BookList extends Component {
 
     componentDidMount() {
-        const { bookcaseService, booksLoaded } = this.props;       
+        const { bookcaseService, booksRequested, booksLoaded } = this.props;       
+        booksRequested();
         bookcaseService.getBooks()
             .then((data) => booksLoaded(data));
     }
@@ -42,6 +43,7 @@ class BookList extends Component {
 const mapStateToProps = ({ books, loading }) => ({ books, loading });
 
 const mapDispatchToProps = {
+    booksRequested,
     booksLoaded
 };
 

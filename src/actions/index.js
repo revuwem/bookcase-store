@@ -1,5 +1,11 @@
-import { BOOKS_LOADED } from '../action-types';
+import { BOOKS_REQUESTED, BOOKS_LOADED } from '../action-types';
 
+
+const booksRequested = () => {
+    return {
+        type: BOOKS_REQUESTED
+    }
+};
 
 const booksLoaded = (newBooks) =>{
     return {
@@ -9,5 +15,6 @@ const booksLoaded = (newBooks) =>{
 };
 
 export {
+    booksRequested,
     booksLoaded,
 };
