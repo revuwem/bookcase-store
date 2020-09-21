@@ -50,17 +50,21 @@ const updateCartItem = (book, item = {}, quantity) => {
         total = 0
     } = item;
 
+   
+    const orderTotal = parseFloat(total) + book.price * quantity; 
+
     return {
         id,
         title,
         count: count + quantity,
-        total: total + book.price * quantity
+        total: parseFloat(orderTotal).toFixed(2)
     };
 };
 
     
 const calculateOrderTotal = (cartItems) => {
-    return cartItems.reduce((acc, item) => (acc+=item.total), 0)
+    const orderTotal = cartItems.reduce((acc, item) => (acc+=parseFloat(item.total)), 0);
+    return parseFloat(orderTotal).toFixed(2);
 }
 
 const updateOrder = (state, bookId, quantity) => {
@@ -71,8 +75,9 @@ const updateOrder = (state, bookId, quantity) => {
     const item = cartItems[itemIndex];
 
     const newItem = updateCartItem(book, item, quantity);
-    const updatedCartItems = updateCartItems(cartItems, newItem, itemIndex);
+    const updatedCartItems = updateCartItems(cartItems, newItem, itemIndex);    
     const orderTotal = calculateOrderTotal(updatedCartItems);
+    console.log(typeof(orderTotal));
     return {        
         cartItems: updatedCartItems,
         orderTotal: orderTotal
