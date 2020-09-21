@@ -38,8 +38,16 @@ export default class BookcaseService {
                 // if(Math.random()>0.75){
                 //     reject(new Error('Something bed happened.'));
                 // }
-                resolve(this.data)                
+                resolve(this.data.map(this._formatBooksData))                
             }, 700);
         });
     };
+
+     _formatBooksData = (book) => {
+        return {
+            ...book, 
+            price: parseFloat(book.price).toFixed(2)
+        }
+    }
 }
+
