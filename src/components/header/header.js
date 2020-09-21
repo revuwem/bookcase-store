@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './header.css';
 
-const Header = ({ itemsNumber, sumTotal }) => {
+const Header = ({ itemsNumber, orderTotal }) => {
     return (
         <header>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -17,12 +18,19 @@ const Header = ({ itemsNumber, sumTotal }) => {
                 <div className="collapse navbar-collapse" id="main-navbar">
                     <ul className="navbar-nav w-100">
                         <Link to="/shop/" className="nav-item">Shop</Link>
-                        <Link to="/cart" className="nav-item cart-details"><span><i className="fas fa-shopping-cart"></i> {itemsNumber}</span> (<span><i className="fas fa-dollar-sign"></i>{sumTotal}</span>)</Link>
-                    </ul>                    
+                        <Link to="/cart" className="nav-item cart-details"><span><i className="fas fa-shopping-cart"></i> {itemsNumber}</span> (<span><i className="fas fa-dollar-sign"></i>{orderTotal}</span>)</Link>
+                    </ul>
                 </div>
             </nav>
         </header>
     );
 };
 
-export default Header;
+const mapStateToProps = ({ shoppingCart: { cartItems, orderTotal }}) => {
+    return {
+        itemsNumber: cartItems.reduce((acc, item) => (acc += item.count), 0),
+        orderTotal: orderTotal
+    }
+}
+
+export default connect(mapStateToProps)(Header);
