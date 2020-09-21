@@ -1,10 +1,11 @@
-import { 
-    FETCH_BOOKS_REQUEST, 
-    FETCH_BOOKS_SUCCESS, 
+import {
+    FETCH_BOOKS_REQUEST,
+    FETCH_BOOKS_SUCCESS,
     FETCH_BOOKS_FAILURE,
-    BOOK_ADDED_TO_CART, 
+    BOOK_ADDED_TO_CART,
     BOOK_REMOVED_FROM_CART,
-    ALL_BOOKS_REMOVED_FROM_CART } from '../action-types';
+    ALL_BOOKS_REMOVED_FROM_CART
+} from '../action-types';
 
 
 const booksRequested = () => {
@@ -13,26 +14,33 @@ const booksRequested = () => {
     }
 };
 
-const booksLoaded = (newBooks) =>{
+const booksLoaded = (newBooks) => {
     return {
         type: FETCH_BOOKS_SUCCESS,
         payload: newBooks
     };
 };
 
-const booksLoadingError = (error) =>{
+const booksLoadingError = (error) => {
     return {
         type: FETCH_BOOKS_FAILURE,
         payload: error
     }
 }
 
-const fetchBooks = (bookcaseService, dispatch) => () => {            
+const fetchBooksOld = (bookcaseService, dispatch) => () => {
     dispatch(booksRequested());
     bookcaseService.getBooks()
         .then((data) => dispatch(booksLoaded(data)))
         .catch((error) => dispatch(booksLoadingError(error)));
 }
+
+const fetchBooks = (bookcaseService) => () => (dispatch) => {
+    dispatch(booksRequested());
+    bookcaseService.getBooks()
+        .then((data) => dispatch(booksLoaded(data)))
+        .catch((error) => dispatch(booksLoadingError(error)));
+};
 
 const bookAddedToCart = (bookId) => {
     return {
@@ -48,8 +56,8 @@ const bookRemovedFromCart = (bookId) => {
     };
 };
 
-const allBooksRemovedFromCart = (bookId) =>{
-    return{
+const allBooksRemovedFromCart = (bookId) => {
+    return {
         type: ALL_BOOKS_REMOVED_FROM_CART,
         payload: bookId
     };

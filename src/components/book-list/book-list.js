@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import BookListItem from '../book-list-item';
 import Spinner from '../spinner';
@@ -12,15 +13,15 @@ import compose from '../../utils';
 import './book-list.css';
 
 
-const BookList = ({books, onAddedToCart}) => {
+const BookList = ({ books, onAddedToCart }) => {
     return (
         <ul className="book-list">
             {
                 books.map((book) => (
                     <li key={book.id} className="book-list-item">
-                        <BookListItem 
-                            book={book} 
-                            onAddedToCart={()=>onAddedToCart(book.id)} />
+                        <BookListItem
+                            book={book}
+                            onAddedToCart={() => onAddedToCart(book.id)} />
                     </li>
                 ))
             }
@@ -46,20 +47,18 @@ class BookListContainer extends Component {
         }
 
         return (
-            <BookList books={books} onAddedToCart={onAddedToCart}/>
+            <BookList books={books} onAddedToCart={onAddedToCart} />
         );
     }
 };
 
-const mapStateToProps = ({bookList: { books, loading, error }}) => ({ books, loading, error });
+const mapStateToProps = ({ bookList: { books, loading, error } }) => ({ books, loading, error });
 
 const mapDispatchToProps = (dispatch, { bookcaseService }) => {
-    return {
-        fetchBooks: fetchBooks(bookcaseService, dispatch),
-        onAddedToCart: (id)=>{
-            dispatch(bookAddedToCart(id));
-        }
-    };
+    return bindActionCreators({
+        fetchBooks: fetchBooks(bookcaseService),
+        onAddedToCart: bookAddedToCart
+    }, dispatch);
 };
 
 export default compose(
