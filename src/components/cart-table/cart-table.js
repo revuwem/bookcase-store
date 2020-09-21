@@ -4,7 +4,7 @@ import { bookAddedToCart, bookRemovedFromCart, allBooksRemovedFromCart } from '.
 
 import './cart-table.css';
 
-const CartTable = ({ items, total, onIncrease, onDecrease, onDelete }) => {
+const CartTable = ({ items, orderTotal, onIncrease, onDecrease, onDelete }) => {
 
     const renderTableRow = (item, idx) => {
 
@@ -54,7 +54,7 @@ const CartTable = ({ items, total, onIncrease, onDecrease, onDelete }) => {
                 <tfoot>
                     <tr className="table-active">
                         <th scope="row" colSpan="4" className="text-right">Total:</th>
-                        <td>$ {total}</td>
+                        <td>$ {orderTotal}</td>
                     </tr>
                 </tfoot>
             </table>
@@ -65,7 +65,7 @@ const CartTable = ({ items, total, onIncrease, onDecrease, onDelete }) => {
 const mapStateToProps = ({shoppingCart: { cartItems, orderTotal }}) => {
     return {
         items: cartItems,
-        total: orderTotal
+        orderTotal
     };
 };
 
